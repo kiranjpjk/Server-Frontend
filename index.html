@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Chat App</title>
+    <style>
+        body { font-family: Arial; }
+        #chat { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+<h2>Chat Room</h2>
+<div id="chat"></div>
+<label for="msg"></label><input id="msg" placeholder="Type message..." />
+<button onclick="sendMsg()">Send</button>
+
+<script>
+    const room = prompt("Enter room name:");
+    const ws = new WebSocket("wss://mychatserver.onrender.com/?room=" + room);
+
+    ws.onmessage = (event) => {
+        const chat = document.getElementById("chat");
+        chat.innerHTML += `<div>${event.data}</div>`;
+    };
+
+    function sendMsg() {
+        const text = document.getElementById("msg").value;
+        ws.send(text);
+    }
+</script>
+</body>
+</html>
