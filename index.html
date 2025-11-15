@@ -15,7 +15,7 @@
 
 <script>
     const room = prompt("Enter room name:");
-    const ws = new WebSocket("wss://mychatserver.onrender.com/?room=" + room);
+    const ws = new WebSocket("wss://server-ifmb.onrender.com/?room=" + room);
 
     ws.onmessage = (event) => {
         const chat = document.getElementById("chat");
