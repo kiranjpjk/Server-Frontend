@@ -1,4 +1,4 @@
-const ws = new WebSocket("deployserver-production-e1ac.up.railway.app");
+const ws = new WebSocket("wss://deployserver-production-e1ac.up.railway.app");
 
 const messagesDiv = document.getElementById("messages");
 const input = document.getElementById("input");
@@ -11,7 +11,6 @@ function printLine(text) {
 
     messagesDiv.appendChild(line);
 
-    // typing animation
     let i = 0;
     const interval = setInterval(() => {
         line.style.opacity = 1;
@@ -24,9 +23,7 @@ function printLine(text) {
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-ws.onopen = () => {
-    printLine("[CONNECTED TO STAR-C2]");
-};
+ws.onopen = () => printLine("[CONNECTED TO STAR-C2]");
 
 ws.onmessage = (msg) => {
     const data = JSON.parse(msg.data);
