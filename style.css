@@ -4,6 +4,16 @@ body {
     color: #00ff9f;
     font-family: "Consolas", monospace;
 }
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;   /* behind everything */
+    background: black;
+}
+
 
 #app-container {
     display: flex;
