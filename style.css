@@ -12,6 +12,8 @@ body {
     height: 100%;
     z-index: -1;   /* behind everything */
     background: black;
+    filter: blur(1.5px);
+    opacity: 0.55;
 }
 
 
