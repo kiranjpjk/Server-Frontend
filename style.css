@@ -1,11 +1,12 @@
+/* Global */
 body {
     margin: 0;
-    background: #000;
+    background: black;
     color: #00ff9f;
-    font-family: "Consolas", monospace;
+    font-family: Consolas, monospace;
 }
 
-/* MATRIX RAIN */
+/* Background Matrix */
 #matrix {
     position: fixed;
     top: 0;
@@ -13,43 +14,45 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.35;
-    filter: blur(1.5px);
+    opacity: 0.3;
+    filter: blur(1.2px);
 }
 
-/* LAYOUT */
+/* Layout */
 #app-container {
     display: flex;
     height: 100vh;
 }
 
-/* TERMINAL */
+/* Terminal */
 #terminal {
     width: 75%;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(3px);
-    box-shadow: inset 0 0 20px #00ff9f33;
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(2px);
     overflow-y: auto;
     border-right: 2px solid #00ff9f55;
+    box-shadow: inset 0 0 20px #00ff9f33;
 }
 
+/* Messages */
 #messages {
-    white-space: pre-wrap;
     font-size: 16px;
+    white-space: pre-wrap;
     color: #00ffb3;
-    text-shadow: 0 0 6px #00ff9f55;
 }
 
-/* INPUT */
+/* Input */
 #input-line {
     display: flex;
-    margin-top: 10px;
 }
+
 .prompt {
     margin-right: 5px;
     color: #00ffa2;
+    text-shadow: 0 0 6px #00ff9f;
 }
+
 #input {
     background: transparent;
     border: none;
@@ -59,19 +62,15 @@ body {
     font-size: 16px;
 }
 
-/* SIDEBAR */
+/* Sidebar */
 #sidebar {
     width: 25%;
     padding: 20px;
-    background: rgba(0, 20, 15, 0.65);
-    backdrop-filter: blur(3px);
-    box-shadow: inset 0 0 20px #00ff9f44;
+    background: rgba(0,20,15,0.6);
+    backdrop-filter: blur(2px);
+    color: #00ffcc;
 }
+
 #sidebar h3 {
-    border-bottom: 1px solid #00ff9f77;
-    padding-bottom: 10px;
-}
-#users li {
-    list-style: none;
-    margin: 8px 0;
+    border-bottom: 1px solid #00ff9f55;
 }

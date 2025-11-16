@@ -6,24 +6,21 @@ const usersList = document.getElementById("users");
 
 function printLine(text) {
     const line = document.createElement("div");
-    line.textContent = text;
-    line.style.opacity = 0;
-
     messagesDiv.appendChild(line);
 
     let i = 0;
     const interval = setInterval(() => {
-        line.style.opacity = 1;
-        line.textContent = text.substring(0, i);
+        line.textContent = text.slice(0, i);
         i++;
-
         if (i > text.length) clearInterval(interval);
     }, 10);
 
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-ws.onopen = () => printLine("[CONNECTED TO STAR-C2]");
+ws.onopen = () => {
+    printLine("[CONNECTED TO STAR-C2]");
+};
 
 ws.onmessage = (msg) => {
     const data = JSON.parse(msg.data);
@@ -42,12 +39,10 @@ ws.onmessage = (msg) => {
     }
 };
 
-input.addEventListener("keydown", (e) => {
+input.addEventListener("keydown", e => {
     if (e.key === "Enter") {
-        const message = input.value.trim();
-        if (message !== "") {
-            ws.send(JSON.stringify({ type: "chat", text: message }));
-        }
+        const text = input.value.trim();
+        if (text) ws.send(JSON.stringify({ type: "chat", text }));
         input.value = "";
     }
 });
