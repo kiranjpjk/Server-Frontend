@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #00ff9f;
+    font-family: "Consolas", monospace;
+}
+
+#app-container {
+    display: flex;
+    height: 100vh;
+}
+
+#terminal {
+    width: 75%;
+    padding: 20px;
+    box-shadow: inset 0 0 20px #00ff9f33;
+    overflow-y: auto;
+    border-right: 2px solid #00ff9f;
+}
+
+#messages {
+    white-space: pre-wrap;
+    font-size: 16px;
+}
+
+#input-line {
+    display: flex;
+    margin-top: 10px;
+}
+
+.prompt {
+    margin-right: 5px;
+    color: #00ffa2;
+    text-shadow: 0 0 5px #00ff9f;
+}
+
+#input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff9f;
+    width: 100%;
+    font-size: 16px;
+}
+
+#sidebar {
+    width: 25%;
+    padding: 20px;
+    background: #001a13;
+    color: #00ffcc;
+    box-shadow: inset 0 0 20px #00ff9f44;
+}
+
+#sidebar h3 {
+    border-bottom: 1px solid #00ff9f77;
+    padding-bottom: 10px;
+}
+
+#users li {
+    list-style: none;
+    margin: 8px 0;
+}
