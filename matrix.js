@@ -13,10 +13,10 @@ let columns = Math.floor(canvas.width / fontSize);
 let drops = new Array(columns).fill(1);
 
 function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
+    ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#00ff9f";
+    ctx.fillStyle = "#00ffcc";
     ctx.font = fontSize + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
@@ -31,7 +31,7 @@ function draw() {
     }
 }
 
-setInterval(draw, 40);
+setInterval(draw, 28);
 
 window.onresize = () => {
     canvas.width = window.innerWidth;
