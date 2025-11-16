@@ -1,51 +1,68 @@
+/* Global */
 body {
     margin: 0;
     background: #000;
     color: #00ff9f;
     font-family: "Consolas", monospace;
 }
+
+/* Matrix Background Canvas */
 #matrix {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;   /* behind everything */
+    z-index: -1;
     background: black;
-    filter: blur(1.5px);
-    opacity: 0.55;
+
+    /* Fix: Lower brightness + blur */
+    filter: blur(1.8px);
+    opacity: 0.35;
 }
 
-
+/* Layout */
 #app-container {
     display: flex;
     height: 100vh;
 }
 
+/* Terminal Panel */
 #terminal {
     width: 75%;
     padding: 20px;
+
+    /* Fix: add a transparent dark layer for readability */
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(3px);
+
     box-shadow: inset 0 0 20px #00ff9f33;
     overflow-y: auto;
-    border-right: 2px solid #00ff9f;
+    border-right: 2px solid #00ff9f55;
 }
 
+/* Messages */
 #messages {
     white-space: pre-wrap;
     font-size: 16px;
+    color: #00ffb3;
+    text-shadow: 0 0 6px #00ff9f55;
 }
 
+/* Input Line */
 #input-line {
     display: flex;
     margin-top: 10px;
 }
 
+/* Prompt Style */
 .prompt {
     margin-right: 5px;
     color: #00ffa2;
-    text-shadow: 0 0 5px #00ff9f;
+    text-shadow: 0 0 8px #00ff9f;
 }
 
+/* Text Input */
 #input {
     background: transparent;
     border: none;
@@ -55,20 +72,29 @@ body {
     font-size: 16px;
 }
 
+/* Sidebar */
 #sidebar {
     width: 25%;
     padding: 20px;
-    background: #001a13;
+
+    /* Fix: also darken the sidebar for contrast */
+    background: rgba(0, 20, 15, 0.65);
+    backdrop-filter: blur(3px);
+
     color: #00ffcc;
     box-shadow: inset 0 0 20px #00ff9f44;
 }
 
+/* Sidebar Header */
 #sidebar h3 {
     border-bottom: 1px solid #00ff9f77;
     padding-bottom: 10px;
+    text-shadow: 0 0 5px #00ff9f55;
 }
 
+/* User List */
 #users li {
     list-style: none;
     margin: 8px 0;
+    color: #00ffdd;
 }
