@@ -1,31 +1,28 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
-    <title>Chat App</title>
-    <style>
-        body { font-family: Arial; }
-        #chat { height: 300px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR-C2 Terminal Chat</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h2>Chat Room</h2>
-<div id="chat"></div>
-<label for="msg"></label><input id="msg" placeholder="Type message..." />
-<button onclick="sendMsg()">Send</button>
+<div id="app-container">
+    <div id="terminal">
+        <div id="messages"></div>
 
-<script>
-    const room = prompt("Enter room name:");
-    const ws = new WebSocket("wss://deployserver-production-e1ac.up.railway.app/?room=" + room);
+        <div id="input-line">
+            <span class="prompt">></span>
+            <input id="input" autocomplete="off" autofocus />
+        </div>
+    </div>
 
-    ws.onmessage = (event) => {
-        const chat = document.getElementById("chat");
-        chat.innerHTML += `<div>${event.data}</div>`;
-    };
+    <div id="sidebar">
+        <h3>ONLINE USERS</h3>
+        <ul id="users"></ul>
+    </div>
+</div>
 
-    function sendMsg() {
-        const text = document.getElementById("msg").value;
-        ws.send(text);
-    }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
