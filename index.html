@@ -7,22 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app-container">
-    <div id="terminal">
-        <div id="messages"></div>
+    <canvas id="matrix"></canvas>
 
-        <div id="input-line">
-            <span class="prompt">></span>
-            <input id="input" autocomplete="off" autofocus />
+    <div id="app-container">
+        <div id="terminal">
+            <div id="messages"></div>
+
+            <div id="input-line">
+                <span class="prompt">></span>
+                <input id="input" autocomplete="off" autofocus />
+            </div>
+        </div>
+
+        <div id="sidebar">
+            <h3>ONLINE USERS</h3>
+            <ul id="users"></ul>
         </div>
     </div>
 
-    <div id="sidebar">
-        <h3>ONLINE USERS</h3>
-        <ul id="users"></ul>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
+    <script src="matrix.js"></script>
 </body>
 </html>
