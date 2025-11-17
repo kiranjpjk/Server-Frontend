@@ -1,48 +1,67 @@
-const ws = new WebSocket("wss://deployserver-production-e1ac.up.railway.app");
+// CONNECT TO SERVER
+const socket = io("wss://deployserver-production-e1ac.up.railway.app"); // change this
 
-const messagesDiv = document.getElementById("messages");
+let roomCode = "";
+let username = "User" + Math.floor(Math.random() * 1000);
+
+// DOM ELEMENTS
+const roomScreen = document.getElementById("room-screen");
+const appContainer = document.getElementById("app-container");
 const input = document.getElementById("input");
+const messagesDiv = document.getElementById("messages");
 const usersList = document.getElementById("users");
+const enterBtn = document.getElementById("enter-btn");
 
-function printLine(text) {
-    const line = document.createElement("div");
-    messagesDiv.appendChild(line);
+// ENTER ROOM
+enterBtn.onclick = () => {
+    roomCode = document.getElementById("room-code").value.trim();
 
-    let i = 0;
-    const interval = setInterval(() => {
-        line.textContent = text.slice(0, i);
-        i++;
-        if (i > text.length) clearInterval(interval);
-    }, 10);
+    let mode = document.querySelector("input[name='mode']:checked").value;
 
+    if (roomCode === "") {
+        alert("Room code cannot be empty");
+        return;
+    }
+
+    if (mode === "create") {
+        socket.emit("create_room", roomCode);
+    } else {
+        socket.emit("join_room", roomCode);
+    }
+
+    roomScreen.classList.add("hidden");
+    appContainer.classList.remove("hidden");
+};
+
+// RECEIVE MESSAGES
+socket.on("chat_message", (data) => {
+    let div = document.createElement("div");
+    div.textContent = `${data.user}: ${data.message}`;
+    messagesDiv.appendChild(div);
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
-}
+});
 
-ws.onopen = () => {
-    printLine("[CONNECTED TO STAR-C2]");
-};
-
-ws.onmessage = (msg) => {
-    const data = JSON.parse(msg.data);
-
-    if (data.type === "chat") {
-        printLine(`${data.user}: ${data.text}`);
-    }
-
-    if (data.type === "users") {
-        usersList.innerHTML = "";
-        data.list.forEach(u => {
-            let li = document.createElement("li");
-            li.textContent = u;
-            usersList.appendChild(li);
-        });
-    }
-};
-
-input.addEventListener("keydown", e => {
+// SEND MESSAGE
+input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-        const text = input.value.trim();
-        if (text) ws.send(JSON.stringify({ type: "chat", text }));
+        let msg = input.value.trim();
+        if (msg.length > 0) {
+            socket.emit("chat_message", {
+                room: roomCode,
+                message: msg,
+                user: username
+            });
+        }
         input.value = "";
     }
+});
+
+// UPDATE USER LIST
+socket.on("users", (users) => {
+    usersList.innerHTML = "";
+    users.forEach(u => {
+        let li = document.createElement("li");
+        li.textContent = u;
+        usersList.appendChild(li);
+    });
 });

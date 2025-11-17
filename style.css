@@ -1,12 +1,16 @@
-/* Global */
-body {
+* {
     margin: 0;
-    background: black;
-    color: #00ff9f;
-    font-family: Consolas, monospace;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
 }
 
-/* Background Matrix */
+body {
+    background: black;
+    overflow: hidden;
+}
+
+/* Matrix Rain Canvas */
 #matrix {
     position: fixed;
     top: 0;
@@ -14,63 +18,110 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    opacity: 0.55;
-    filter: blur(0.6px);
+    opacity: 0.55;   /* Medium contrast */
 }
 
-/* Layout */
+/* Center room-screen */
+#room-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#room-box {
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid #00ff00;
+    padding: 25px;
+    width: 350px;
+    border-radius: 10px;
+    text-align: center;
+    color: #00ff00;
+    box-shadow: 0 0 20px #00ff00;
+}
+
+#room-box input[type=text] {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.toggle label {
+    cursor: pointer;
+}
+
+#enter-btn {
+    width: 100%;
+    padding: 10px;
+    background: #00ff00;
+    border: none;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* MAIN APP */
+.hidden {
+    display: none;
+}
+
 #app-container {
     display: flex;
     height: 100vh;
+    width: 100vw;
 }
 
-/* Terminal */
 #terminal {
-    width: 75%;
+    flex: 3;
     padding: 20px;
-    background: rgba(0,0,0,0.55);
-    backdrop-filter: blur(2px);
+    color: #00ff00;
     overflow-y: auto;
-    border-right: 2px solid #00ff9f55;
-    box-shadow: inset 0 0 20px #00ff9f33;
 }
 
-/* Messages */
 #messages {
-    font-size: 16px;
-    white-space: pre-wrap;
-    color: #00ffb3;
+    height: 90%;
+    overflow-y: auto;
+    margin-bottom: 10px;
 }
 
-/* Input */
 #input-line {
     display: flex;
+    align-items: center;
 }
 
 .prompt {
+    color: #00ff00;
     margin-right: 5px;
-    color: #00ffa2;
-    text-shadow: 0 0 6px #00ff9f;
 }
 
 #input {
-    background: transparent;
+    flex: 1;
+    background: black;
     border: none;
     outline: none;
-    color: #00ff9f;
-    width: 100%;
+    color: #00ff00;
     font-size: 16px;
 }
 
-/* Sidebar */
 #sidebar {
-    width: 25%;
-    padding: 20px;
-    background: rgba(0,20,15,0.6);
-    backdrop-filter: blur(2px);
-    color: #00ffcc;
-}
-
-#sidebar h3 {
-    border-bottom: 1px solid #00ff9f55;
+    flex: 1;
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 1px solid #00ff00;
+    padding: 15px;
+    color: #00ff00;
 }

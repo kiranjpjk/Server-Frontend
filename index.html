@@ -7,25 +7,48 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="matrix"></canvas>
+<canvas id="matrix"></canvas>
 
-    <div id="app-container">
-        <div id="terminal">
-            <div id="messages"></div>
+<!-- ROOM SELECTION SCREEN -->
+<div id="room-screen">
+    <div id="room-box">
+        <h2>ENTER STAR-C2</h2>
 
-            <div id="input-line">
-                <span class="prompt">></span>
-                <input id="input" autocomplete="off" autofocus />
-            </div>
+        <div class="toggle">
+            <label>
+                <input type="radio" name="mode" value="join" checked>
+                Join Existing Room
+            </label>
+            <label>
+                <input type="radio" name="mode" value="create">
+                Create New Room
+            </label>
         </div>
 
-        <div id="sidebar">
-            <h3>ONLINE USERS</h3>
-            <ul id="users"></ul>
+        <label for="room-code"></label><input type="text" id="room-code" placeholder="Enter room code">
+
+        <button id="enter-btn">ENTER</button>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app-container" class="hidden">
+    <div id="terminal">
+        <div id="messages"></div>
+
+        <div id="input-line">
+            <span class="prompt">></span>
+            <label for="input"></label><input id="input" autocomplete="off" autofocus />
         </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="matrix.js"></script>
+    <div id="sidebar">
+        <h3>ONLINE USERS</h3>
+        <ul id="users"></ul>
+    </div>
+</div>
+
+<script src="matrix.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
