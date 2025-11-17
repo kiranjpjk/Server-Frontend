@@ -1,8 +1,8 @@
 // CONNECT TO SERVER
-const socket = io("https://deployserver-production-8cb8.up.railway.app", {
-    transports: ["websocket"]
+const socket = io("wss://deployserver-production-8cb8.up.railway.app", {
+    transports: ["websocket"],
+    path: "/socket.io/"
 });
- // change this
 
 let roomCode = "";
 let username = "User" + Math.floor(Math.random() * 1000);
@@ -18,10 +18,9 @@ const enterBtn = document.getElementById("enter-btn");
 // ENTER ROOM
 enterBtn.onclick = () => {
     roomCode = document.getElementById("room-code").value.trim();
-
     let mode = document.querySelector("input[name='mode']:checked").value;
 
-    if (roomCode === "") {
+    if (!roomCode) {
         alert("Room code cannot be empty");
         return;
     }
@@ -36,7 +35,7 @@ enterBtn.onclick = () => {
     appContainer.classList.remove("hidden");
 };
 
-// RECEIVE MESSAGES
+// RECEIVE CHAT MESSAGE
 socket.on("chat_message", (data) => {
     let div = document.createElement("div");
     div.textContent = `${data.user}: ${data.message}`;
@@ -59,7 +58,7 @@ input.addEventListener("keydown", (e) => {
     }
 });
 
-// UPDATE USER LIST
+// UPDATE USERS LIST
 socket.on("users", (users) => {
     usersList.innerHTML = "";
     users.forEach(u => {
