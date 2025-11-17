@@ -1,5 +1,5 @@
 // CONNECT TO SERVER
-const socket = io("wss://deployserver-production-e1ac.up.railway.app"); // change this
+const socket = io("wss://deployserver-production-8cb8.up.railway.app"); // change this
 
 let roomCode = "";
 let username = "User" + Math.floor(Math.random() * 1000);
